@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+
+import React, { Suspense } from 'react';
 import { useSearchParams  } from "next/navigation";
 
 const grids = [
@@ -106,4 +107,10 @@ const Homepage = ({ searchTerm: propSearchTerm, selectedCategories: propSelected
   );
 };
 
-export default Homepage;
+export default function SuspenseWrapper(props) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Homepage {...props} />
+    </Suspense>
+  );
+}
